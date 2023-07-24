@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище SkladModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="items">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name_" Type="varchar" MaxLength="50" />
+          <Property Name="count_" Type="int" />
+          <Property Name="cell_" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="desc_" Type="varchar" MaxLength="1000" />
+          <Property Name="group_name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Кабели">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_id" Type="int" />
+          <Property Name="Длина" Type="int" />
+          <Property Name="Порт1" Type="varchar" MaxLength="50" />
+          <Property Name="Порт2" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Кабели__item_id__49C3F6B7">
+          <End Role="items" Type="Self.items" Multiplicity="0..1" />
+          <End Role="Кабели" Type="Self.Кабели" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Кабели">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SkladModelContainer">
+          <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Кабели" EntityType="Self.Кабели" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Кабели__item_id__49C3F6B7" Association="Self.FK__Кабели__item_id__49C3F6B7">
+            <End Role="items" EntitySet="items" />
+            <End Role="Кабели" EntitySet="Кабели" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SkladModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SkladEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="items" EntityType="SkladModel.items" />
+          <EntitySet Name="Кабели" EntityType="SkladModel.Кабели" />
+          <AssociationSet Name="FK__Кабели__item_id__49C3F6B7" Association="SkladModel.FK__Кабели__item_id__49C3F6B7">
+            <End Role="items" EntitySet="items" />
+            <End Role="Кабели" EntitySet="Кабели" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="items">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name_" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="count_" Type="Int32" />
+          <Property Name="cell_" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="desc_" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Кабели" Relationship="SkladModel.FK__Кабели__item_id__49C3F6B7" FromRole="items" ToRole="Кабели" />
+        </EntityType>
+        <EntityType Name="Кабели">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_id" Type="Int32" />
+          <Property Name="Длина" Type="Int32" />
+          <Property Name="Порт1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Порт2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="items" Relationship="SkladModel.FK__Кабели__item_id__49C3F6B7" FromRole="Кабели" ToRole="items" />
+        </EntityType>
+        <Association Name="FK__Кабели__item_id__49C3F6B7">
+          <End Type="SkladModel.items" Role="items" Multiplicity="0..1" />
+          <End Type="SkladModel.Кабели" Role="Кабели" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Кабели">
+              <PropertyRef Name="item_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SkladModelContainer" CdmEntityContainer="SkladEntities">
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="SkladModel.items">
+              <MappingFragment StoreEntitySet="items">
+                <ScalarProperty Name="group_name" ColumnName="group_name" />
+                <ScalarProperty Name="desc_" ColumnName="desc_" />
+                <ScalarProperty Name="cell_" ColumnName="cell_" />
+                <ScalarProperty Name="count_" ColumnName="count_" />
+                <ScalarProperty Name="name_" ColumnName="name_" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Кабели">
+            <EntityTypeMapping TypeName="SkladModel.Кабели">
+              <MappingFragment StoreEntitySet="Кабели">
+                <ScalarProperty Name="Порт2" ColumnName="Порт2" />
+                <ScalarProperty Name="Порт1" ColumnName="Порт1" />
+                <ScalarProperty Name="Длина" ColumnName="Длина" />
+                <ScalarProperty Name="item_id" ColumnName="item_id" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

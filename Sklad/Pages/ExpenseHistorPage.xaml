@@ -1,0 +1,36 @@
+﻿<Page x:Class="Sklad.Pages.ExpenseHistorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sklad.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ExpenseHistorPage"
+      Background="DarkGray">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock Name="idBlock" Text="Табельный номер"  FontSize="14" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0"/>
+        <TextBox Name="idBox" FontSize="14" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="140,0,0,0" Width="150"/>
+        <Button Content="Назад" Background="Yellow" FontSize="24" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.ColumnSpan="2" Width="100"  Name="BtnBack" Click="Btnback_Click" Margin="5,5,5,5" />
+        <Button Content="Найти" Margin="305,0,0,0" Background="White" Grid.ColumnSpan="2" FontSize="18" Height="25" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" Name="BtnSearch" Click="BtnSearch_Click" ></Button>
+
+        <DataGrid Name="DGridHistory" Grid.Row="1" IsReadOnly="True" SelectionMode="Extended" CanUserSortColumns="False" CanUserResizeColumns="False" AutoGenerateColumns="False" Margin="5,5,5,5" SelectionChanged="DGridHistory_SelectionChanged">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding surname_}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Имя" Binding="{Binding name_}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding thirdname_}" Width="3*"></DataGridTextColumn>
+                <DataGridTextColumn Header="Дата" Binding="{Binding date_}" Width="67"></DataGridTextColumn>
+                <DataGridTextColumn Header="Количество" Binding="{Binding count_}" Width="75"></DataGridTextColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</Page>

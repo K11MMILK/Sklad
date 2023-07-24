@@ -1,0 +1,34 @@
+﻿<Page x:Class="Sklad.AddEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Sklad"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddEditPage">
+
+    <Grid Background="DarkGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="5,5,5,5" Text="Название"></TextBlock>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="5,5,5,5" Text="Ячейка" Grid.Row="1"></TextBlock>
+        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="20" Margin="5,5,5,5" Text="Описание" Grid.Row="2"></TextBlock>
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="20" Margin="5,5,5,5" Text="Группа" Grid.Row="3"></TextBlock>
+        <TextBox Text="{Binding name_}" Name="nameBox" MaxLength="50" Grid.Column="1" FontSize="14"  Width="590" Height="30" HorizontalAlignment="Left" TextChanged="nameBox_TextChanged" ></TextBox>
+        <TextBox Text="{Binding cell_}" Name="cellBox" MaxLength="10" Grid.Column="1" FontSize="14" Grid.Row="1" Width="100" Height="30" HorizontalAlignment="Left" TextChanged="cellBox_TextChanged"  />
+        <TextBox Text="{Binding desc_}" Name="dexcBox" Grid.Row="2" MaxLength="1000" Grid.Column="1" FontSize="14" Width="auto" MinWidth="595" Height="auto" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" HorizontalAlignment="Left" TextChanged="dexcBox_TextChanged"></TextBox>
+        <ComboBox Text="{Binding group_name}" Name="groupBox" Grid.Column="1" Grid.Row="3" FontSize="14" Background="White" Height="30" Width="300" HorizontalAlignment="Left" TextBoxBase.TextChanged="groupBox_TextChanged" IsTextSearchEnabled="False" IsEditable="True" SelectionChanged="groupBox_SelectionChanged"></ComboBox>
+        <Button Content="Назад" Margin="5,5,5,5" HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.Row="5" Name="BtnBack" Click="BtnBack_Click" Width="100" Background="Yellow" FontSize="24" />
+        <Button Content=">" FontSize="24"  Width="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="4" Name="BtnNext" Background="Green" Margin="5,5,5,5" Click="BtnNext_Click" Grid.Column="1"/>
+    </Grid>
+</Page>
